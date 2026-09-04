@@ -1,0 +1,31 @@
+managed implementation in class zbp_i_rap_product unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_RAP_PRODUCT alias Product
+persistent table zrap_product
+draft table zrap_prod_d
+lock master total etag LocalLastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+ field ( readonly ) LocalLastChangedAt;
+  // Standard Draft Actions
+  draft determine action Prepare;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  mapping for zrap_product
+  {
+    ProdId = prod_id;
+    ProdName = prod_name;
+    Price = price;
+    Currency = currency;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

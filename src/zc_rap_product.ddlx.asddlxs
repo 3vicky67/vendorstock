@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Product',
+    typeNamePlural: 'Products',
+    title: { type: #STANDARD, value: 'ProdId' },
+    description: { type: #STANDARD, value: 'ProdName' }
+  }
+}
+annotate view ZC_RAP_PRODUCT with
+{
+  @UI.facet: [
+    {
+      id: 'ProductDetail',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Product Details',
+      position: 10
+    }
+  ]
+
+  @UI.lineItem: [ { position: 10, label: 'Product ID' } ]
+  @UI.identification: [ { position: 10, label: 'Product ID' } ]
+  @UI.selectionField: [ { position: 10 } ]
+  ProdId;
+
+  @UI.lineItem: [ { position: 20, label: 'Product Name' } ]
+  @UI.identification: [ { position: 20, label: 'Product Name' } ]
+  @UI.selectionField: [ { position: 20 } ]
+  ProdName;
+
+  @UI.lineItem: [ { position: 30, label: 'Price' } ]
+  @UI.identification: [ { position: 30, label: 'Price' } ]
+  Price;
+
+  @UI.lineItem: [ { position: 40, label: 'Currency' } ]
+  @UI.identification: [ { position: 40, label: 'Currency' } ]
+  Currency;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

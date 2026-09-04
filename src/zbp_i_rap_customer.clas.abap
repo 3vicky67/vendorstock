@@ -1,0 +1,5 @@
+CLASS zbp_i_rap_customer DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rap_customer.
+ENDCLASS.
+
+CLASS zbp_i_rap_customer IMPLEMENTATION.
+ENDCLASS.

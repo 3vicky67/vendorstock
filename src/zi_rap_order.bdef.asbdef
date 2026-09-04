@@ -1,0 +1,65 @@
+managed implementation in class zbp_i_rap_order unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_RAP_ORDER alias Order
+persistent table zrap_order
+draft table zrap_order_d
+lock master total etag OrderUuid
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  // Include with draft in association
+  association _Items { create; with draft; }
+
+  field ( numbering : managed, readonly ) OrderUuid;
+
+  // Standard Draft Actions
+  draft determine action Prepare;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  determination setInitialStatus on modify { create; }
+
+  mapping for zrap_order
+  {
+    OrderUuid   = order_uuid;
+    OrderId     = order_id;
+    CustId      = cust_id;
+    TotalAmount = total_amount;
+    Currency    = currency;
+    Status      = status;
+    VendorGroup = vendor_group;
+    VendorName  = vendor_name;
+  }
+}
+
+define behavior for ZI_RAP_ORD_ITEM alias OrderItem
+persistent table zrap_ord_item
+draft table zrap_item_d
+lock dependent by _Order
+authorization dependent by _Order
+{
+  update;
+  delete;
+
+  // Include with draft in association
+  association _Order { with draft; }
+
+  field ( numbering : managed, readonly ) ItemUuid;
+  field ( readonly ) OrderUuid;
+
+  mapping for zrap_ord_item
+  {
+    ItemUuid   = item_uuid;
+    OrderUuid  = order_uuid;
+    ProdId     = prod_id;
+    Quantity   = quantity;
+    UnitOfMeasure = unit_of_measure;
+  }
+}

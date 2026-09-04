@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service for Order App'
+define service ZUI_RAP_ORDER {
+  expose ZC_RAP_ORDER     as Orders;
+  expose ZC_RAP_ORD_ITEM  as OrderItem;
+  expose ZC_RAP_CUSTOMER  as Customer;
+  expose ZC_RAP_PRODUCT   as Product;
+  expose ZI_RAP_STATUS_VH as StatusValueHelp;
+}

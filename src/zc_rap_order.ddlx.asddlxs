@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+@UI: { 
+  headerInfo: { 
+    typeName: 'Order', 
+    typeNamePlural: 'Orders', 
+    title: { type: #STANDARD, value: 'OrderId' },
+    description: { type: #STANDARD, value: 'CustId' }
+  } 
+}
+annotate view ZC_RAP_ORDER with 
+{
+  @UI.facet: [ 
+    { 
+      id: 'Order', 
+      purpose: #STANDARD, 
+      type: #IDENTIFICATION_REFERENCE, 
+      label: 'Order Details', 
+      position: 10 
+    },
+    { 
+      id: 'Items', 
+      purpose: #STANDARD, 
+      type: #LINEITEM_REFERENCE, 
+      label: 'Order Items', 
+      position: 20, 
+      targetElement: '_Items' 
+    } 
+  ]
+
+  @UI.hidden: true
+  OrderUuid;
+
+  @UI: { 
+    lineItem:       [ { position: 10, label: 'Order ID' } ], 
+    identification: [ { position: 10, label: 'Order ID' } ],
+    selectionField: [ { position: 10 } ] 
+  }
+  OrderId;
+
+  @UI: { 
+    lineItem:       [ { position: 20, label: 'Customer ID' } ], 
+    identification: [ { position: 20, label: 'Customer ID' } ],
+    selectionField: [ { position: 20 } ] 
+  }
+  CustId;
+
+  @UI: { 
+    lineItem:       [ { position: 30, label: 'Total Amount' } ], 
+    identification: [ { position: 30, label: 'Total Amount' } ] 
+  }
+  TotalAmount;
+
+  @UI: { 
+    identification: [ { position: 40, label: 'Currency' } ] 
+  }
+  Currency;
+
+  @UI: { 
+  lineItem:       [ { position: 50, criticality: 'StatusCriticality', label: 'Status' } ], 
+  identification: [ { position: 50, criticality: 'StatusCriticality', label: 'Status' } ] ,
+  textArrangement: #TEXT_ONLY
+}
+Status;
+@UI: { lineItem: [ { position: 60 } ], identification: [ { position: 60 ,label : 'Vendor Group' } ] }
+  VendorGroup;
+
+  @UI: { lineItem: [ { position: 70 } ], identification: [ { position: 70 , label : 'Vendor Name'  } ] }
+  VendorName;
+}
