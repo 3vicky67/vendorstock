@@ -1,4 +1,5 @@
 # vendorstock
 to know about  vendor stock
 
-<img width="1321" height="590" alt="image" src="https://github.com/user-attachments/assets/26305011-0d19-4e86-955e-b5dfff58dd84" />
+<img width="1324" height="596" alt="image" src="https://github.com/user-attachments/assets/42a2a63d-868e-4ad1-b0f1-132dd2bcf567" />
+
